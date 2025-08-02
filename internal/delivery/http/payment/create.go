@@ -21,7 +21,7 @@ import (
 // @Failure      401      {object}  response.APIResponse
 // @Failure      422      {object}  response.APIResponse
 // @Failure      500      {object}  response.APIResponse
-// @Router       /payments [post]
+// @Router       /api/v1/payments [post]
 func (h *PaymentHandler) Create(w http.ResponseWriter, r *http.Request) {
 	h.Logger.Info().Msg("📥 Incoming Create request")
 	var payment entity.Payment

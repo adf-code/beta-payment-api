@@ -1,4 +1,3 @@
-basePath: /api/v1
 definitions:
   entity.Payment:
     type: object
@@ -28,7 +27,7 @@ info:
   title: Beta Payment API
   version: "1.0"
 paths:
-  /payments:
+  /api/v1/payments:
     get:
       consumes:
       - application/json
@@ -148,7 +147,7 @@ paths:
       summary: Create a new payment
       tags:
       - payments
-  /payments/{id}:
+  /api/v1/payments/{id}:
     delete:
       description: Deletes a payment entity using its UUID
       parameters:
@@ -217,6 +216,17 @@ paths:
       summary: Update payment by ID
       tags:
       - payments
+  /healthz:
+    get:
+      description: Health check for service
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.APIResponse'
+      summary: Health Check
+      tags:
+      - health
 securityDefinitions:
   BearerAuth:
     description: 'Using token header using the Bearer scheme. Example: "Bearer {token}"'

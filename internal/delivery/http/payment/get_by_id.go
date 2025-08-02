@@ -21,7 +21,7 @@ import (
 // @Failure      401  {object}  response.APIResponse  "Unauthorized"
 // @Failure      404  {object}  response.APIResponse  "Payment not found"
 // @Failure      500  {object}  response.APIResponse  "Internal server error"
-// @Router       /payments/{id} [get]
+// @Router       /api/v1/payments/{id} [get]
 func (h *PaymentHandler) GetByID(w http.ResponseWriter, r *http.Request) {
 	h.Logger.Info().Msg("📥 Incoming GetByID request")
 
