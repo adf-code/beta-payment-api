@@ -10,9 +10,8 @@
         "version": "1.0"
     },
     "host": "localhost:8080",
-    "basePath": "/api/v1",
     "paths": {
-        "/payments": {
+        "/api/v1/payments": {
             "get": {
                 "security": [
                     {
@@ -195,7 +194,7 @@
                 }
             }
         },
-        "/payments/{id}": {
+        "/api/v1/payments/{id}": {
             "get": {
                 "security": [
                     {
@@ -296,6 +295,23 @@
                     },
                     "500": {
                         "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/response.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/healthz": {
+            "get": {
+                "description": "Health check for service",
+                "tags": [
+                    "health"
+                ],
+                "summary": "Health Check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/response.APIResponse"
                         }

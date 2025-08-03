@@ -36,7 +36,7 @@ import (
 //
 // @Success      200     {object}  response.APIResponse
 // @Failure      500     {object}  response.APIResponse
-// @Router       /payments [get]
+// @Router       /api/v1/payments [get]
 func (h *PaymentHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	h.Logger.Info().Msg("📥 Incoming GetAll request")
 	params := request.ParsePaymentQueryParams(r)

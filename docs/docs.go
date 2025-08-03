@@ -18,7 +18,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/payments": {
+        "/api/v1/payments": {
             "get": {
                 "security": [
                     {
@@ -201,7 +201,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/payments/{id}": {
+        "/api/v1/payments/{id}": {
             "get": {
                 "security": [
                     {
@@ -308,6 +308,23 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/healthz": {
+            "get": {
+                "description": "Health check for service",
+                "tags": [
+                    "health"
+                ],
+                "summary": "Health Check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.APIResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -353,7 +370,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "localhost:8080",
-	BasePath:         "/api/v1",
+	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "Beta Payment API",
 	Description:      "API service to manage payment using Clean Architecture",
