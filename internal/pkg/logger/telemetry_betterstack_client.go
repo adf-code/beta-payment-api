@@ -42,13 +42,17 @@ func (w *TelemetryClient) Write(p []byte) (n int, err error) {
 }
 
 func InitLoggerWithTelemetry(cfg *config.AppConfig) zerolog.Logger {
-	if cfg.TelemetryAPIKey == "" || cfg.TelemetryEndpoint == "" {
-		panic("Telemetry config is not set")
+	if cfg.TelemetryEnabled == "true" {
+		if cfg.TelemetryAPIKey == "" || cfg.TelemetryEndpoint == "" {
+			panic("Telemetry config is not set")
+		}
+
+		consoleWriter := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}
+		telemetryWriter := NewTelemetryClient(cfg.TelemetryAPIKey, cfg.TelemetryEndpoint)
+		multiWriter := zerolog.MultiLevelWriter(consoleWriter, telemetryWriter)
+
+		return zerolog.New(multiWriter).With().Timestamp().Logger()
+	} else {
+		return zerolog.New(nil)
 	}
-
-	consoleWriter := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}
-	telemetryWriter := NewTelemetryClient(cfg.TelemetryAPIKey, cfg.TelemetryEndpoint)
-	multiWriter := zerolog.MultiLevelWriter(consoleWriter, telemetryWriter)
-
-	return zerolog.New(multiWriter).With().Timestamp().Logger()
 }

@@ -15,6 +15,7 @@ type AppConfig struct {
 	DBName            string
 	DBSSLMode         string
 	Env               string
+	TelemetryEnabled  string
 	TelemetryAPIKey   string
 	TelemetryEndpoint string
 }
@@ -34,6 +35,7 @@ func LoadConfig() *AppConfig {
 		DBPassword:        getEnv("DB_PASSWORD", ""),
 		DBName:            getEnv("DB_NAME", "paymentdb"),
 		DBSSLMode:         getEnv("DB_SSLMODE", "disable"),
+		TelemetryEnabled:  getEnv("TELEMETRY_ENABLED", "false"),
 		TelemetryAPIKey:   getEnv("TELEMETRY_API_KEY", "not_set"),
 		TelemetryEndpoint: getEnv("TELEMETRY_ENDPOINT", "not_set"),
 	}
