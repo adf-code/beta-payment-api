@@ -3,11 +3,11 @@ package logger
 import (
 	"bytes"
 	"github.com/adf-code/beta-payment-api/config"
+	"github.com/rs/zerolog"
+	"io"
 	"net/http"
 	"os"
 	"time"
-
-	"github.com/rs/zerolog"
 )
 
 type TelemetryClient struct {
